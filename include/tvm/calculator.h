@@ -50,6 +50,19 @@ namespace cfa {
       float (Base::*cpt_tbl[_TOTAL])();
     };
 
+    class Payment : Base {
+      /**
+         TVM calculator with constant payment information
+       */
+
+    public:
+
+      bool begin_mode;
+      float pmt;
+
+    };
+
+
   } // namespace tvm
 } // namespace cfa
 
