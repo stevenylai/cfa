@@ -1,46 +1,56 @@
 /**
    Header for calculator
  */
+#ifndef TVM_CALCULATOR_H
+#define TVM_CALCULATOR_H
 
+namespace cfa {
+  namespace tvm {
 
-class Base {
-  /**
-     Parameter of a calculator:
+    class Base {
+      /**
+         Parameter of a calculator:
 
-     * pv: present value
-     * fv: future value
-     * i/y: interest rate
-     * n: componding period
+         * pv: present value
+         * fv: future value
+         * i/y: interest rate
+         * n: componding period
 
-     Method:
+         Method:
 
-     * cpt(type), compute the value of a given type
+         * cpt(type), compute the value of a given type
 
-   */
+         */
 
- public:
+    public:
 
-  enum {
-    FV,
-    PV,
-    IY,
-    N,
-    _TOTAL,
-  };
+      enum {
+        FV,
+        PV,
+        IY,
+        N,
+        _TOTAL,
+      };
 
-  float pv;
-  float fv;
-  float iy;
-  int n;
+      float pv;
+      float fv;
+      float iy;
+      int n;
 
-  Base();
-  float cpt(int type);
+      Base();
+      virtual ~Base();
+      virtual float cpt(int type);
 
- private:
+    private:
 
-  float cpt_pv();
-  float cpt_fv();
-  float cpt_iy();
-  float cpt_n();
-  float (Base::*cpt_tbl[_TOTAL])();
-};
+      float cpt_pv();
+      float cpt_fv();
+      float cpt_iy();
+      float cpt_n();
+      float (Base::*cpt_tbl[_TOTAL])();
+    };
+
+  } // namespace tvm
+} // namespace cfa
+
+#endif
