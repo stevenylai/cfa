@@ -4,12 +4,14 @@
 #ifndef TVM_CALCULATOR_H
 #define TVM_CALCULATOR_H
 
+#include <map>
+
 namespace cfa {
   namespace tvm {
 
     class Base {
       /**
-         Parameter of a calculator:
+         Parameter of a simple calculator:
 
          * pv: present value
          * fv: future value
@@ -24,30 +26,23 @@ namespace cfa {
 
     public:
 
-      enum {
-        FV,
-        PV,
-        IY,
-        N,
-        _TOTAL,
-      };
-
-      float pv;
-      float fv;
-      float iy;
+      double pv;
+      double fv;
+      double iy;
       int n;
 
       Base();
       virtual ~Base();
-      virtual float cpt(int type);
+      virtual double cpt(std::string const &type);
 
     private:
+      std::map<std::string, double (Base::*)()> cpt_tbl;
 
-      float cpt_pv();
-      float cpt_fv();
-      float cpt_iy();
-      float cpt_n();
-      float (Base::*cpt_tbl[_TOTAL])();
+      double cpt_pv();
+      double cpt_fv();
+      double cpt_iy();
+      double cpt_n();
+      //double (Base::*cpt_tbl[_TOTAL])();
     };
 
     class Payment : Base {
@@ -58,7 +53,10 @@ namespace cfa {
     public:
 
       bool begin_mode;
-      float pmt;
+      double pmt;
+
+      Payment();
+      virtual ~Payment();
 
     };
 
