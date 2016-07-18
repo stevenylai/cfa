@@ -35,16 +35,17 @@ namespace cfa {
       virtual ~Base();
       virtual double cpt(std::string const &type);
 
-    private:
-      std::map<std::string, double (Base::*)()> cpt_tbl;
+    protected:
 
-      double cpt_pv();
-      double cpt_fv();
-      double cpt_iy();
-      double cpt_n();
+      std::map<std::string, double (Base::*)()> cpt_tbl;
+      virtual double cpt_pv();
+      virtual double cpt_fv();
+      virtual double cpt_iy();
+      virtual double cpt_n();
+      virtual double cpt_pmt();
     };
 
-    class Payment : Base {
+    class Payment : public Base {
       /**
          TVM calculator with constant payment information
        */
@@ -57,6 +58,9 @@ namespace cfa {
       Payment();
       virtual ~Payment();
 
+    protected:
+
+      virtual double cpt_pmt();
     };
 
 

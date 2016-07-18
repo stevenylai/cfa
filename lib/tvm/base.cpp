@@ -1,5 +1,7 @@
 /**
-   Provides the basic module for TVM related calculation.
+   Provides the basic module for TVM related calculation:
+
+   fv = (1 + iy) ^ n * pv
  */
 #include <cmath>
 #include "tvm/calculator.h"
@@ -10,7 +12,8 @@ Base::Base() : pv(0), fv(0), iy(0), n(0),
                  {"fv", &Base::cpt_fv},
                  {"pv", &Base::cpt_pv},
                  {"iy", &Base::cpt_iy},
-                 {"n", &Base::cpt_n}
+                 {"n", &Base::cpt_n},
+                 {"pmt", &Base::cpt_pmt},
                } {
 }
 
@@ -42,5 +45,10 @@ double Base::cpt_iy() {
 }
 
 double Base::cpt_n() {
-  return 1;
+  double delta = this->fv / this->pv;
+  return std::log10(delta) / std::log10(1 + this->iy / 100.0);
+}
+
+double Base::cpt_pmt() {
+  return 0.0; // No payment
 }

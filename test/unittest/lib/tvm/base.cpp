@@ -14,6 +14,7 @@ int main() {
   std::cout << fv << std::endl;
   assert(std::abs(fv - 647.68) < 0.01);
   calc.fv = fv;
-  assert(std::abs(calc.cpt("iy") - 8) < 0.01);
+  assert(std::abs(calc.cpt("iy") - calc.iy) < 0.01);
+  assert(std::abs(calc.cpt("n") - calc.n) < 0.01);
   return 0;
 }
