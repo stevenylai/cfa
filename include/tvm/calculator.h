@@ -42,7 +42,6 @@ namespace cfa {
       double cpt_fv();
       double cpt_iy();
       double cpt_n();
-      //double (Base::*cpt_tbl[_TOTAL])();
     };
 
     class Payment : Base {

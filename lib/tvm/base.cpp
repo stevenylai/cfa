@@ -29,16 +29,16 @@ static double calc_rate(double iy, int n) {
 }
 
 double Base::cpt_pv() {
-  return this->fv / calc_rate(this->iy, this->n) * -1;
+  return this->fv / calc_rate(this->iy, this->n);
 }
 
 double Base::cpt_fv() {
-  return this->pv * calc_rate(this->iy, this->n) * -1;
+  return this->pv * calc_rate(this->iy, this->n);
 }
 
 double Base::cpt_iy() {
   double delta = this->fv / this->pv;
-  return std::log10(delta) / std::log10(this->iy / 100.0 + 1);
+  return (std::pow(delta, 1.0 / this->n) - 1) * 100.0;
 }
 
 double Base::cpt_n() {
