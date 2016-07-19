@@ -6,7 +6,7 @@ AC_SUBST([$1], ['$2'])
 ])
 
 AC_PROG_CXX
-AX_CXX_COMPILE_STDCXX([11], [noext], [mandatory])
+AX_CXX_COMPILE_STDCXX_11
 LT_INIT
 
 AC_CONFIG_MACRO_DIR([m4])
